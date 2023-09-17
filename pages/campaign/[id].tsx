@@ -2,6 +2,7 @@ import { PopulatedCampaignT, PopulatedFaction } from '@/schemas/campaign';
 import Button from '@/components/generic/button';
 import Faction from '@/components/dashboard/faction';
 import AspectInput from '@/components/sheet/aspectInput';
+import { defaultColorPalette } from '@/consts/defaultColorPalette';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
@@ -61,11 +62,7 @@ const CampaignPage = () => {
         name: 'New Faction',
         description: '',
         icon: '',
-        colorPalette: {
-          primary: '209 213 219',
-          secondary: '156 163 175',
-          tertiary: '107 114 128',
-        },
+        colorPalette: defaultColorPalette,
         public: false,
         visible: true,
         characters: [],

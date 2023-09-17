@@ -1,11 +1,8 @@
+import { defaultColorPalette } from './defaultColorPalette';
 import { CharacterSheetT } from '@/schemas/sheet';
 
-export const blankSheet: Omit<CharacterSheetT, '_id'> = {
-  colorPalette: {
-    primary: '209 213 219',
-    secondary: '156 163 175',
-    tertiary: '107 114 128',
-  },
+export const blankSheet: Omit<CharacterSheetT, '_id' | 'colorPalette' | 'skills'> = {
+  colorPalette: defaultColorPalette,
   name: {
     text: '',
     visibleIn: [],

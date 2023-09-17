@@ -1,3 +1,4 @@
+import { colorPalette, ColorPaletteT } from './generic/colorPalette';
 import { Skill } from '@/types/fate';
 import mongoose, { Schema, model, InferSchemaType } from 'mongoose';
 
@@ -8,18 +9,7 @@ export const characterSheetSchema = new Schema({
       visibleIn: { type: [{ type: String, ref: 'Campaign' }], default: [] },
     },
   },
-  colorPalette: {
-    type: {
-      primary: { type: String, required: true },
-      secondary: { type: String, required: true },
-      tertiary: { type: String, required: true },
-    },
-    default: {
-      primary: '209 213 219',
-      secondary: '156 163 175',
-      tertiary: '107 114 128',
-    },
-  },
+  colorPalette: colorPalette,
   name: {
     type: {
       text: { type: String, required: true },
@@ -172,11 +162,12 @@ export const CharacterSheet =
   mongoose.models.CharacterSheet ||
   model('CharacterSheet', characterSheetSchema);
 
-// Need to override one field here since egh :D
+// Need to override two fields here since egh :D
 export type CharacterSheetT = {
   skills: { [level: number]: { name: Skill; visibleIn: string[] }[] };
+  colorPalette: ColorPaletteT;
   _id: string;
-} & Omit<InferSchemaType<typeof characterSheetSchema>, 'skills'>;
+} & Omit<InferSchemaType<typeof characterSheetSchema>, 'skills' | 'colorPalette'>;
 
 export async function createCharacterSheet(sheet: CharacterSheetT) {
   return await CharacterSheet.create(sheet);

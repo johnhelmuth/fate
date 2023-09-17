@@ -1,22 +1,13 @@
 import { CharacterSheetT } from './sheet';
+import { colorPalette } from './generic/colorPalette';
+
 import mongoose, { Schema, model, InferSchemaType } from 'mongoose';
 
 export const campaignSchema = new Schema({
   name: { type: String, required: true },
   icon: String,
   description: String,
-  colorPalette: {
-    type: {
-      primary: { type: String, required: true },
-      secondary: { type: String, required: true },
-      tertiary: { type: String, required: true },
-    },
-    default: {
-      primary: '209 213 219',
-      secondary: '156 163 175',
-      tertiary: '107 114 128',
-    },
-  },
+  colorPalette: colorPalette,
   aspects: [
     {
       name: { type: String, required: true },
@@ -28,18 +19,7 @@ export const campaignSchema = new Schema({
       name: { type: String, required: true },
       description: { type: String, required: true, default: '' },
       icon: String,
-      colorPalette: {
-        type: {
-          primary: { type: String, required: true },
-          secondary: { type: String, required: true },
-          tertiary: { type: String, required: true },
-        },
-        default: {
-          primary: '209 213 219',
-          secondary: '156 163 175',
-          tertiary: '107 114 128',
-        },
-      },
+      colorPalette: colorPalette,
       characters: [
         {
           sheet: {
